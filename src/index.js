@@ -1,7 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './exsercises/interpolation/App';
+  // import App from './App';
+import App from './exsercises/state/App';
+//  import App from './exsercises/events/App';
+// import App from './exsercises/compPure/App';
+// import App from './exsercises/lists/App';
+// import App from './exsercises/props/App';
+// import App from './interpolation/App'
+// import App from './exsercises/condRendering/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

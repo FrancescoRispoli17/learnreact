@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* img{height: 95px;} */
+
+/* .avatar{ height: 90px; border-radius: 50%;} */
+
+/* .card{
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  background: #fff;
+  width: fit-content;
+ } */
+
+
+ .card {
+  width: fit-content;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.avatar {
+  margin: 10px;
+  border-radius: 50%;
+}
