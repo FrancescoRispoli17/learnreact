@@ -2,8 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './exsercises/interpolation/App';
-   //import App from './App';
-import App from './exsercises/stateAsync/App';
+// import App from './App';
+import App from './exsercises/stateParent/App';
+// import App from'./exsercises/stateStructure/App'
+// import App from './exsercises/array/App';
+// import App from './exsercises/immer/App'
+// import App from './exsercises/stateAsync/App';
 // import App from './exsercises/state/App';
 //  import App from './exsercises/events/App';
 // import App from './exsercises/compPure/App';
