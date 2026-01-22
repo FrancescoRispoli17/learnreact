@@ -1,54 +1,117 @@
-// shared state between components(idiom:lifting the state up!)
+// Reusing logic via custom hooks
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useOnlineStatus } from "./useOnlineStatus";
+import { useFormInput } from "./useFormInput";
 
-// function Panel({title,children}){
-//     const [isActive,setActive]=useState(false)
+
+function StatusBar() {
+
+    const [isOnline, setIsOnline] = useState(
+navigator.onLine
+);
     
-//     return(
-//         <section>
-//             <h3>{title}</h3>
-//             {
-//                 isActive ? 
-//                     <p>{children}</p> : 
-//                 <button onClick={()=> setActive(true)}>show</button>
-//             }
-//         </section>
-//     )
-// }
+    useEffect(() => {
+        function handleOnline() {
+            setIsOnline(true);
+        }
 
+        function handleOffline() {
+            setIsOnline(false);
+        }
 
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
 
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        }
+    }, [])
 
-function Panel({title,isActive,onShow,children}){
+    return <h1>{isOnline ? 'Online' : 'disconnected!'}</h1>
+
+}
+
+ function SaveButton() {
+     const [isOnline, setIsOnline] = useState(
+navigator.onLine
+);
     
-    return(
-        <section>
-            <h3>{title}</h3>
-            {
-                isActive ? 
-                    <p>{children}</p> : 
-                <button onClick={onShow}>show</button>
-            }
-        </section>
+    useEffect(() => {
+        function handleOnline() {
+            setIsOnline(true);
+        }
+
+        function handleOffline() {
+            setIsOnline(false);
+        }
+
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        }
+    }, [])
+
+    function handleSaveClick() {
+        console.log("Progress save!");
+    }
+
+    return (
+        <button disabled={!isOnline} onClick={handleSaveClick}>
+            {isOnline ? 'Online' : 'disconnected!'}
+        </button>
+
     )
 }
 
-export default function Accordion(){
-    const [activeIndex,setActive]=useState(0)
+
+
+
+
+function StatusBar2(){
+    const isOnline=useOnlineStatus();
+    return <h1>{isOnline ? 'Online' : 'disconnected!'}</h1>
+}
+
+function SaveButton2(){
+    const isOnline=useOnlineStatus();
+    function handleSaveClick() {
+        console.log("Progress save!");
+    }
+    return (
+        <button disabled={!isOnline} onClick={handleSaveClick}>
+            {isOnline ? 'Online' : 'disconnected!'}
+        </button>
+
+    )
+}
+
+ function App(){
     return(
         <>
-            <Panel
-                title="about"
-                isActive={activeIndex==0}
-                onShow={()=>setActive(0)}>hello everybody
-            </Panel>
+            <SaveButton2/>
+            <StatusBar2/>
+        </>
+    )
+}
 
-            <Panel
-                title="info"
-                isActive={activeIndex==1}
-                onShow={()=>setActive(1)}>info now is available
-            </Panel>
+
+
+
+// custom hooks permit shared logic, not state itself
+
+export default function Form(){
+const firstNameProps=useFormInput('fulvios')
+const lastNameProps=useFormInput('fulvios')
+    return(
+        <>
+            fn:<input {...firstNameProps} />
+            ln:<input {...lastNameProps} />
+            {firstNameProps.value} {lastNameProps.value}
         </>
     )
 }

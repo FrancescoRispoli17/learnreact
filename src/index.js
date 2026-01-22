@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './exsercises/interpolation/App';
-// import App from './App';
-import App from './exsercises/stateParent/App';
+import App from './App';
+// import App from './exsercises/useEffect/App';
+//import App from './exsercises/flush/App';
+// import App from './exsercises/ref/App';
+// import App from './exsercises/stateParent/App';
 // import App from'./exsercises/stateStructure/App'
 // import App from './exsercises/array/App';
 // import App from './exsercises/immer/App'
