@@ -1,126 +1,90 @@
-// // Reusing logic via custom hooks
+import { useReducer, useState } from "react";
 
- import { useEffect, useState } from "react";
-import { useCounts } from "./useCounts";
-// import { useOnlineStatus } from "./useOnlineStatus";
-// import { useFormInput } from "./useFormInput";
+export const initialActivities={
+  user:'',
+  activities:[
+    {
+      id:0,
+      name:'anna'
+    },{
+      id:1,
+      name:'jotaro'
+    }
+  ]
+}
+export default function App(){
+    const [state, dispatch] = useReducer(messengerReducer, initialActivities);
 
+  return(
+    <>
+      <ListActivities state={state} dispatch={dispatch}/>
+      {<Login state={state} dispatch={dispatch} /> }
+    </>
+  )
+}
 
-// function StatusBar() {
+export function messengerReducer(state, action,) {
+  switch (action.type) {
+    case 'add-activity': {
+      return {user:state.user,
+        activities:[...state.activities,{
+        id:action.id,
+        name:action.name
+      }]};
+    }
+    case 'add-user': {
+      return {user:action.user,
+        activities:[...state.activities]};
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
 
-//     const [isOnline, setIsOnline] = useState(
-// navigator.onLine
-// );
-    
-//     useEffect(() => {
-//         function handleOnline() {
-//             setIsOnline(true);
-//         }
+let nextId=2;
 
-//         function handleOffline() {
-//             setIsOnline(false);
-//         }
+export function ListActivities({state,dispatch}){
+  const [name, setName] = useState('');
+  function handdleAddActivity(name){
+    dispatch({type:'add-activity',id:nextId++ ,name:name})
+  }
+  return(
+    <>
+      Activity:<textarea
+        value={name}
+        onChange={(e)=>setName(e.target.value)}
+      />
+      <button onClick={()=>handdleAddActivity(name)}>
+        Add
+      </button>
+      <ul>  
+          {state.activities.map(a=>(
+            <li key={a.id}>{a.id} {a.name}</li>
+          ))}
+      </ul>
+    </>
+  )
+}
 
-//         window.addEventListener('online', handleOnline);
-//         window.addEventListener('offline', handleOffline);
+export function Login({state,dispatch}){
+  const [userName, setUserName] = useState('');
 
-//         return () => {
-//             window.removeEventListener('online', handleOnline);
-//             window.removeEventListener('offline', handleOffline);
-//         }
-//     }, [])
-
-//     return <h1>{isOnline ? 'Online' : 'disconnected!'}</h1>
-
-// }
-
-//  function SaveButton() {
-//      const [isOnline, setIsOnline] = useState(
-// navigator.onLine
-// );
-    
-//     useEffect(() => {
-//         function handleOnline() {
-//             setIsOnline(true);
-//         }
-
-//         function handleOffline() {
-//             setIsOnline(false);
-//         }
-
-//         window.addEventListener('online', handleOnline);
-//         window.addEventListener('offline', handleOffline);
-
-//         return () => {
-//             window.removeEventListener('online', handleOnline);
-//             window.removeEventListener('offline', handleOffline);
-//         }
-//     }, [])
-
-//     function handleSaveClick() {
-//         console.log("Progress save!");
-//     }
-
-//     return (
-//         <button disabled={!isOnline} onClick={handleSaveClick}>
-//             {isOnline ? 'Online' : 'disconnected!'}
-//         </button>
-
-//     )
-// }
-
-
-
-
-
-// function StatusBar2(){
-//     const isOnline=useOnlineStatus();
-//     return <h1>{isOnline ? 'Online' : 'disconnected!'}</h1>
-// }
-
-// function SaveButton2(){
-//     const isOnline=useOnlineStatus();
-//     function handleSaveClick() {
-//         console.log("Progress save!");
-//     }
-//     return (
-//         <button disabled={!isOnline} onClick={handleSaveClick}>
-//             {isOnline ? 'Online' : 'disconnected!'}
-//         </button>
-
-//     )
-// }
-
-//  function App(){
-//     return(
-//         <>
-//             <SaveButton2/>
-//             <StatusBar2/>
-//         </>
-//     )
-// }
-
-
-
-
-// // custom hooks permit shared logic, not state itself
-
-// export default function Form(){
-// const firstNameProps=useFormInput('fulvios')
-// const lastNameProps=useFormInput('fulvios')
-//     return(
-//         <>
-//             fn:<input {...firstNameProps} />
-//             ln:<input {...lastNameProps} />
-//             {firstNameProps.value} {lastNameProps.value}
-//         </>
-//     )
-// }
-
-
-
-
-export default function Counter() {
- let count= useCounts()
-  return <h1>Seconds passed: {count}</h1>;
+  function handdleUserName(name){
+    dispatch({type:'add-user',user:userName})
+  }
+  return(
+    <>
+      {state.user ?(
+        <h1>HELLO {state.user}</h1>
+      ):(
+        <>
+          username:<input value={userName} onChange={(e)=>setUserName(e.target.value)} />
+          <button onClick={handdleUserName} >
+              login
+          </button>
+        </>
+      )}
+    </>
+  )
 }
