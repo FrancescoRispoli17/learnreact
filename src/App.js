@@ -1,90 +1,34 @@
-import { useReducer, useState } from "react";
+//import logo from './logo.svg';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+//import AddReview from './components/add-review';
+import MoviesList from './components/movie-list';
+//import Movie from './components/movie';
+//import Login from './components/login';
+import Nav from 'react-bootstrap/Nav';
+import NavBar from 'react-bootstrap/NavBar';
+import { Link, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
-export const initialActivities={
-  user:'',
-  activities:[
-    {
-      id:0,
-      name:'anna'
-    },{
-      id:1,
-      name:'jotaro'
-    }
-  ]
-}
-export default function App(){
-    const [state, dispatch] = useReducer(messengerReducer, initialActivities);
-
-  return(
-    <>
-      <ListActivities state={state} dispatch={dispatch}/>
-      {<Login state={state} dispatch={dispatch} /> }
-    </>
-  )
-}
-
-export function messengerReducer(state, action,) {
-  switch (action.type) {
-    case 'add-activity': {
-      return {user:state.user,
-        activities:[...state.activities,{
-        id:action.id,
-        name:action.name
-      }]};
-    }
-    case 'add-user': {
-      return {user:action.user,
-        activities:[...state.activities]};
-    }
-    default: {
-      throw Error('Unknown action: ' + action.type);
-    }
-  }
+function App() {
+  return (
+    <div className="App">
+      <NavBar bg='light' expand='lg'>
+        <NavBar.Brand href='#home'>React Bootstrap</NavBar.Brand>
+        <NavBar.Toggle aria-controls='basic-navbar-nav'></NavBar.Toggle>
+        <NavBar.Collapse id="basic-navbar-nav">
+          <Nav className='mr-auto'>
+            <Nav.Link href='#home'>
+              <Link to={"/movies"}>Movies</Link>
+            </Nav.Link>
+            <Nav.Link href='#link'>Link</Nav.Link>
+          </Nav>
+        </NavBar.Collapse>
+      </NavBar>
+      <Switch>
+        <Route exact path={["/","/movies"]} component={MoviesList}></Route>
+      </Switch>
+    </div>
+  );
 }
 
-let nextId=2;
-
-export function ListActivities({state,dispatch}){
-  const [name, setName] = useState('');
-  function handdleAddActivity(name){
-    dispatch({type:'add-activity',id:nextId++ ,name:name})
-  }
-  return(
-    <>
-      Activity:<textarea
-        value={name}
-        onChange={(e)=>setName(e.target.value)}
-      />
-      <button onClick={()=>handdleAddActivity(name)}>
-        Add
-      </button>
-      <ul>  
-          {state.activities.map(a=>(
-            <li key={a.id}>{a.id} {a.name}</li>
-          ))}
-      </ul>
-    </>
-  )
-}
-
-export function Login({state,dispatch}){
-  const [userName, setUserName] = useState('');
-
-  function handdleUserName(name){
-    dispatch({type:'add-user',user:userName})
-  }
-  return(
-    <>
-      {state.user ?(
-        <h1>HELLO {state.user}</h1>
-      ):(
-        <>
-          username:<input value={userName} onChange={(e)=>setUserName(e.target.value)} />
-          <button onClick={handdleUserName} >
-              login
-          </button>
-        </>
-      )}
-    </>
-  )
-}
+export default App;
