@@ -56,7 +56,8 @@ export default function Toolbar(){
 }
 ```
 
-In quest altro esempio invece usiamo anche il metodo onClickCapture nel "GENITORE 2" che, nonostante ci sia o meno lo stopPropagation nei figli, scatenerà per primo il suo evento. Infatti il bottone "playing" scatenerà "GENITORE 2" per primo e poi se stesso, mentre il bottone "uploading" scatenerà anche lui prima "GENITORE 2", poi se stesso, e infine anche "GENITORE 1" dato che non ha lo stopPropagation() come il bottone di "playing"
+In quest altro esempio invece usiamo anche il metodo onClickCapture nel "GENITORE 2" che, nonostante ci sia o meno lo stopPropagation nei figli, scatenerà per primo il suo evento.<br>
+Infatti il bottone "playing" scatenerà "GENITORE 2" per primo e poi se stesso, mentre il bottone "uploading" scatenerà anche lui prima "GENITORE 2", poi se stesso, e infine anche "GENITORE 1" dato che non ha lo stopPropagation() come il bottone di "playing"
 ```js
 export default function Toolbar(){
   return(
@@ -151,10 +152,10 @@ export default function Counter() {
 ```
 | Spiegazione | Valori | 
 | :--- | :---: | 
-| All'inizio, "count" e "prevCount" valgono entrambi 0:  | count = 0  prevCount = 0 | 
-| Al click del bottone, SetCount aumenta il valore di "count" di 1, quindi avremo: | count = 1  prevCount = 0 | 
-| Avendo fatto il setCount, il componente verra renderizzato nuovamente. Quindi nella pagina vedremo proprio i valori di prima, ovvero: | count = 1  prevCount = 0. | 
-| Solo alla fine della renderizzazione partirà lo useEffect che setterà il "prevCount" uguale a "count", così avremo: | count = 1  prevCount = 1 |
+| All'inizio, "count" e "prevCount" valgono entrambi 0:  | count = 0 <br> prevCount = 0 | 
+| Al click del bottone, SetCount aumenta il valore di "count" di 1, quindi avremo: | count = 1 <br> prevCount = 0 | 
+| Avendo fatto il setCount, il componente verra renderizzato nuovamente. Quindi nella pagina vedremo proprio i valori di prima, ovvero: | count = 1 <br> prevCount = 0. | 
+| Solo alla fine della renderizzazione partirà lo useEffect che setterà il "prevCount" uguale a "count", così avremo: | count = 1 <br> prevCount = 1 |
 
 Nonostante le 2 variabili abbiano lo stesso valore `ADESSO`, noi nella pagina vediamo quello che avevamo `PRIMA`, `quando il componente è stata renderizzata`, ovvero: count = 1  prevCount = 0
 <br><br><br>
