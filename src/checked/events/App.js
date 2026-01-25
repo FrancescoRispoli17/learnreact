@@ -97,40 +97,43 @@
 
 
 
-// export default function Toolbar(){
-//   return(
-//     <div onClick={()=> alert("clicked on toolbar 1")}>
-
-//     <div onClickCapture={()=> alert("clicked on toolbar")}>
-//       <button onClick={(e)=>{
-//           e.stopPropagation();
-//           alert("playing");
-//         }}>
-//         play movie
-//       </button>
-//        <button onClick={(e)=>{ 
-//           alert("uploading")
-//         }}>
-//         upload image
-//       </button>
-//     </div>
-//     </div>
-//   )
-// }
-
-
-
-
-
-export default function Signup(){
+export default function Toolbar(){
   return(
-    <form 
-      onSubmit={(e)=>{
-          e.preventDefault();
-          alert("submitting")
-        }}>
-        <input/>
-        <button>send</button>
-    </form>
+    <div onClick={()=> alert("clicked on toolbar 1")}>
+
+      <div onClickCapture={()=> alert("clicked on toolbar")}>
+        
+        <button onClick={(e)=>{
+            e.stopPropagation();
+            alert("playing");
+          }}>
+          play movie
+        </button>
+        <button onClick={(e)=>{ 
+            alert("uploading")
+          }}>
+          upload image
+        </button>
+
+      </div>
+
+    </div>
   )
 }
+
+
+
+
+
+// export default function Signup(){
+//   return(
+//     <form 
+//       onSubmit={(e)=>{
+//           e.preventDefault();
+//           alert("submitting")
+//         }}>
+//         <input/>
+//         <button>send</button>
+//     </form>
+//   )
+// }

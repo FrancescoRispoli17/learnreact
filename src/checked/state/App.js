@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sculptureList } from "./data";
+import { sculptureList } from "../data";
 // export default function Gallery(){
 //   let index=0;
 //   function handleClick(){

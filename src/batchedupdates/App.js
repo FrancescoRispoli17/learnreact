@@ -5,7 +5,8 @@
 3 committing
 
 */
-import { useState } from "react";
+ import { useState } from "react";
+
 // export default function Counter(){
 //   const [number,setNumber]=useState(0);
 
@@ -23,7 +24,7 @@ import { useState } from "react";
 //           alert(number);
 //         },3000)
 //       }}>
-//         +3
+//         +5
 //       </button>
 //     </>
 //   )
@@ -67,7 +68,7 @@ import { useState } from "react";
 //       To:
 //         <select
 //           value={to}
-//           onChange={e=>setTo(e.target.value)}>
+//           onChange={e=>setTo(a=>a=e.target.value)}>
 //             <option value='Alice'>alice</option>
 //             <option value='Bob'>bob</option>
 //           </select>
@@ -83,23 +84,59 @@ import { useState } from "react";
 
 
 
-export default function Counter2() {
+// export default function Counter2() {
 
-    const [number, setNumber] = useState(0);
+//     const [number, setNumber] = useState(0);
 
-    return (
-        <>
-            <h1>{number}</h1>
-            <button onClick={()=> {
-                // setNumber(number + 1);
-                // setNumber(number + 1);
-                // setNumber(number + 1);
-                setNumber(n=>n+1);
-                setNumber(n=>n+1);
-                setNumber(n=>n+1);
-            }}>
-                +3
-            </button>
-        </>
-    )
-} 
+//     return (
+//         <>
+//             <h1>{number}</h1>
+//             <button onClick={()=> {
+//                 setNumber(number + 1);
+//                 setNumber(number + 1);
+//                 setNumber(number + 1);
+//                 // setNumber(n=>n+1);
+//                 // setNumber(n=>n+1);
+//                 // setNumber(n=>n+1);
+//             }}>
+//                 +3
+//             </button>
+//         </>
+//     )
+// } 
+
+
+
+
+function delay(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
+
+export default function RequestTracker() {
+  const [pending, setPending] = useState(0);
+  const [completed, setCompleted] = useState(0);
+
+  async function handleClick() {
+    setPending(pending + 1);
+    await delay(3000);
+    setPending(p=>p - 1);
+    setCompleted(c=>c + 1);
+  }
+
+  return (
+    <>
+      <h3>
+        Pending: {pending}
+      </h3>
+      <h3>
+        Completed: {completed}
+      </h3>
+      <button onClick={handleClick}>
+        Buy     
+      </button>
+    </>
+  );
+}

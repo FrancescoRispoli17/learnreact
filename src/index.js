@@ -2,7 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './exsercises/interpolation/App';
- import App from './App';
+
+
+
+//  import App from './batchedupdates/App';
+import App from './ref/App';
+
+
+
+
 // import App from './exsercises/Reducer/App';
 // import App from './exsercises/ResettingState/App';
 // import App from './exsercises/useEffect/App';

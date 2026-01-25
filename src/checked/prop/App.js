@@ -1,4 +1,4 @@
-import { getImage } from "./utils";
+import { getImage } from "../utils";
 
 // function Avatar({person,size}){
 //   const avatar='';
@@ -66,7 +66,7 @@ function Avatar({person,size}){
 function Profile(props){
   return(
     <div className="card">
-      {}
+      
         <Avatar {...props}></Avatar>
     </div>
   )
