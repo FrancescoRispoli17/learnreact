@@ -155,7 +155,7 @@ export default function Counter() {
 | All'inizio, "count" e "prevCount" valgono entrambi 0:  | count = 0 <br> prevCount=0 | 
 | Al click del bottone, SetCount aumenta il valore di "count" di 1, quindi avremo: | count = 1 <br> prevCount=0 | 
 | Avendo fatto il setCount, il componente verra renderizzato nuovamente. Quindi nella pagina vedremo proprio i valori di prima, ovvero: | count = 1 <br> prevCount=0 | 
-| Solo alla fine della renderizzazione partirà lo useEffect che setterà il "prevCount" uguale a "count", così avremo: | count = 1 <br> prevCount = 1 |
+| Solo alla fine della renderizzazione partirà lo useEffect che setterà il "prevCount" uguale a "count", così avremo: | count = 1 <br> prevCount=1 |
 
 Nonostante le 2 variabili abbiano lo stesso valore `ADESSO`, noi nella pagina vediamo quello che avevamo `PRIMA`, `quando il componente è stata renderizzata`, ovvero: count = 1  prevCount=0
 <br><br><br>
