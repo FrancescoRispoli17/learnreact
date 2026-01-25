@@ -151,7 +151,7 @@ export default function Counter() {
 }
 ```
 | Spiegazione | Valori | 
-| :--- | :---: | 
+| :--- | :------------------ | 
 | All'inizio, "count" e "prevCount" valgono entrambi 0:  | count = 0 <br> prevCount = 0 | 
 | Al click del bottone, SetCount aumenta il valore di "count" di 1, quindi avremo: | count = 1 <br> prevCount = 0 | 
 | Avendo fatto il setCount, il componente verra renderizzato nuovamente. Quindi nella pagina vedremo proprio i valori di prima, ovvero: | count = 1 <br> prevCount = 0. | 
