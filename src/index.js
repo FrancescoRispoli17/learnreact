@@ -6,7 +6,7 @@ import './index.css';
 
 
 //  import App from './batchedupdates/App';
-import App from './ref/App';
+import App from './App';
 
 
 
